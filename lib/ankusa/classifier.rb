@@ -51,10 +51,10 @@ module Ankusa
       vs = vocab_sizes
       classnames.each { |cn|
         # if we've never seen the class, the word prob is 0
-        next unless vs.has_key?(cn) && vs[cn]
+        next unless vs.has_key?(cn)
 
         # use a laplacian smoother
-        probs[cn] = (probs[cn] + 1).to_f / (@storage.get_total_word_count(cn) + vs[cn]).to_f
+        probs[cn] = (probs[cn] + 1).to_f / (@storage.get_total_word_count(cn) + vs[cn].to_f).to_f
       }
       probs
     end
